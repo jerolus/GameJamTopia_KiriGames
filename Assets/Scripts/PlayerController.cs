@@ -15,24 +15,80 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public Rigidbody playerRigidbody;
     public Animator playerAnimator;
+    public GameObject magnetCollider;
     public float distanceSideX;
+    public bool powerUpMultiplier;
+    public bool powerUpInvincible;
+    public bool powerUpMagnet;
+    public int pagesNumber;
 
+    private static PlayerController m_instance;
     private bool m_jumping;
     private bool m_sliding;
+    private bool m_gameOver;
+
+    private void Awake()
+    {
+        if (!m_instance)
+        {
+            m_instance = this;
+        }
+    }
+
+    public static PlayerController GetInstance()
+    {
+        return m_instance;
+    }
 
     private void Update()
     {
-        playerRigidbody.MovePosition(transform.position + transform.forward * Time.deltaTime * speed);
+        CheckMovement();
+        CheckInput();
+    }
 
+    public IEnumerator JumpCoroutine()
+    {
+        m_jumping = true;
+        m_sliding = true;
+        //JumpAnimationTime
+        yield return new WaitForSeconds(0.7f);
+        m_jumping = false;
+        m_sliding = false;
+        playerAnimator.SetBool("jump", false);
+    }
+
+    private IEnumerator SlideCoroutine()
+    {
+        m_sliding = true;
+        m_jumping = true;
+        //SlideAnimationTime
+        yield return new WaitForSeconds(1.08f);
+        m_sliding = false;
+        m_jumping = false;
+        playerAnimator.SetBool("slide", false);
+    }
+
+    private void CheckMovement()
+    {
+        if (!m_gameOver)
+        {    
+            playerRigidbody.MovePosition(transform.position + transform.forward * Time.deltaTime * speed);
+        }
+    }
+
+    private void CheckInput()
+    {
         if (Input.GetKeyDown(KeyCode.UpArrow) && !m_jumping)
         {
             playerAnimator.SetBool("jump", true);
+            playerAnimator.Play("Jump");
             StartCoroutine(JumpCoroutine());
         }
 
         if (Input.GetKeyDown(KeyCode.DownArrow) && !m_sliding)
         {
             playerAnimator.SetBool("slide", true);
+            playerAnimator.Play("Slide");
             StartCoroutine(SlideCoroutine());
         }
 
@@ -85,21 +141,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public IEnumerator JumpCoroutine()
+    public void GameOver()
     {
-        m_jumping = true;
-        //JumpAnimationTime
-        yield return new WaitForSeconds(0.7f);
-        m_jumping = false;
-        playerAnimator.SetBool("jump", false);
-    }
-
-    private IEnumerator SlideCoroutine()
-    {
-        m_sliding = true;
-        //SlideAnimationTime
-        yield return new WaitForSeconds(1.08f);
-        m_sliding = false;
-        playerAnimator.SetBool("slide", false);
+        m_gameOver = true;
     }
 }
