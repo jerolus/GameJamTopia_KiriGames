@@ -10,6 +10,16 @@ public class MenuController : MonoBehaviour
         SceneManager.LoadScene("Runner", LoadSceneMode.Single);
     }
 
+    public void OnLevelsClick()
+    {
+        
+    }
+
+    public void OnOptionsClick()
+    {
+        
+    }
+
     public void OnQuitClick()
     {
         Application.Quit();
