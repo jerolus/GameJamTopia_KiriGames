@@ -42,13 +42,13 @@ public class PlayerController : MonoBehaviour
             {
                 case Side.Left:
                     {
-                        transform.position = new Vector3(Mathf.Lerp(transform.position.x, 0f, 1f), transform.position.y, transform.position.z);
+                        transform.position = new Vector3(0f, transform.position.y, transform.position.z);
                         currentSide = Side.Center;
                     }
                     break;
                 case Side.Center:
                     {
-                        transform.position = new Vector3(Mathf.Lerp(transform.position.x, distanceSideX, 1f), transform.position.y, transform.position.z);
+                        transform.position = new Vector3(distanceSideX, transform.position.y, transform.position.z);
                         currentSide = Side.Right;
                     }
                     break;
@@ -71,13 +71,13 @@ public class PlayerController : MonoBehaviour
                     break;
                 case Side.Center:
                     {
-                        playerRigidbody.MovePosition(new Vector3(Mathf.Lerp(transform.position.x, -distanceSideX, 1f), transform.position.y, transform.position.z));
+                        transform.position = new Vector3(-distanceSideX, transform.position.y, transform.position.z);
                         currentSide = Side.Left;
                     }
                     break;
                 case Side.Right:
                     {
-                        playerRigidbody.MovePosition(new Vector3(Mathf.Lerp(transform.position.x, 0f, 1f), transform.position.y, transform.position.z));
+                        transform.position = new Vector3(0f, transform.position.y, transform.position.z);
                         currentSide = Side.Center;
                     }
                     break;
@@ -88,6 +88,7 @@ public class PlayerController : MonoBehaviour
     public IEnumerator JumpCoroutine()
     {
         m_jumping = true;
+        //JumpAnimationTime
         yield return new WaitForSeconds(0.7f);
         m_jumping = false;
         playerAnimator.SetBool("jump", false);
@@ -96,6 +97,7 @@ public class PlayerController : MonoBehaviour
     private IEnumerator SlideCoroutine()
     {
         m_sliding = true;
+        //SlideAnimationTime
         yield return new WaitForSeconds(1.08f);
         m_sliding = false;
         playerAnimator.SetBool("slide", false);
