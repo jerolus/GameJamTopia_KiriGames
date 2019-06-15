@@ -28,7 +28,6 @@ public class PlayerController : MonoBehaviour
     private GameController m_controller;
     private bool m_jumping;
     private bool m_sliding;
-    private bool m_gameOver;
 
     private void Awake()
     {
@@ -79,11 +78,8 @@ public class PlayerController : MonoBehaviour
 
     private void CheckMovement()
     {
-        if (!m_gameOver)
-        {
-            speed += 0.001f;
-            playerRigidbody.MovePosition(transform.position + transform.forward * Time.deltaTime * speed);
-        }
+        speed += 0.001f;
+        playerRigidbody.MovePosition(transform.position + transform.forward * Time.deltaTime * speed);
     }
 
     private void CheckInput()
@@ -157,8 +153,8 @@ public class PlayerController : MonoBehaviour
         m_controller.controllerUI.UpdateScore(transform.position.z);
     }
 
-    public void GameOver()
+    public void KillPlayer()
     {
-        m_gameOver = true;
+        m_controller.GameOver();
     }
 }

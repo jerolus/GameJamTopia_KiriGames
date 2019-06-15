@@ -15,7 +15,7 @@ public class ObstacleBehaviour : MonoBehaviour
             }
             else
             {   
-                player.GameOver();
+                player.KillPlayer();
             }
         }
     }
