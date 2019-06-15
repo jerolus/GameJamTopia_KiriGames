@@ -51,8 +51,10 @@ public class PowerUpBehaviour : MonoBehaviour
     private IEnumerator InvincibleCoroutine(PlayerController player)
     {
         player.powerUpInvincible = true;
+        player.speed += 10f;
         yield return new WaitForSeconds(5);
         player.powerUpInvincible = false;
+        player.speed -= 10f;
         Destroy(gameObject);
     }
     

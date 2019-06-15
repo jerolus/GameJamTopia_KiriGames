@@ -20,9 +20,12 @@ public class PlayerController : MonoBehaviour
     public bool powerUpMultiplier;
     public bool powerUpInvincible;
     public bool powerUpMagnet;
+
+    [HideInInspector]
     public int pagesNumber;
 
     private static PlayerController m_instance;
+    private GameController m_controller;
     private bool m_jumping;
     private bool m_sliding;
     private bool m_gameOver;
@@ -40,10 +43,16 @@ public class PlayerController : MonoBehaviour
         return m_instance;
     }
 
+    private void Start()
+    {
+        m_controller = GameController.GetInstance();
+    }
+
     private void Update()
     {
         CheckMovement();
         CheckInput();
+        ActualizeUIInformation();
     }
 
     public IEnumerator JumpCoroutine()
@@ -71,7 +80,8 @@ public class PlayerController : MonoBehaviour
     private void CheckMovement()
     {
         if (!m_gameOver)
-        {    
+        {
+            speed += 0.001f;
             playerRigidbody.MovePosition(transform.position + transform.forward * Time.deltaTime * speed);
         }
     }
@@ -139,6 +149,12 @@ public class PlayerController : MonoBehaviour
                     break;
             }
         }
+    }
+
+    private void ActualizeUIInformation()
+    {
+        m_controller.controllerUI.UpdatePagesNumber(pagesNumber);
+        m_controller.controllerUI.UpdateScore(transform.position.z);
     }
 
     public void GameOver()
