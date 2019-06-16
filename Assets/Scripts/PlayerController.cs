@@ -233,6 +233,8 @@ public class PlayerController : MonoBehaviour
 
     public void KillPlayer()
     {
+        int pages = PlayerPrefs.GetInt("pagesNumber", 0);
+        PlayerPrefs.SetInt("pagesNumber", pages + pagesNumber);
         m_controller.GameOver();
     }
 }
