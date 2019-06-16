@@ -15,8 +15,11 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public Rigidbody playerRigidbody;
     public Animator playerAnimator;
+    public AudioSource audioSource;
     public GameObject magnetCollider;
     public float distanceSideX;
+    public AudioClip jump;
+    public AudioClip slide;
     public bool powerUpMultiplier;
     public bool powerUpInvincible;
     public bool powerUpMagnet;
@@ -82,7 +85,7 @@ public class PlayerController : MonoBehaviour
         m_sliding = true;
         m_jumping = true;
         //SlideAnimationTime
-        yield return new WaitForSeconds(1.08f);
+        yield return new WaitForSeconds(0.2f);
         m_sliding = false;
         m_jumping = false;
         playerAnimator.SetBool("slide", false);
@@ -100,6 +103,7 @@ public class PlayerController : MonoBehaviour
         {
             playerAnimator.SetBool("jump", true);
             playerAnimator.Play("Jump");
+            audioSource.PlayOneShot(jump, 0.7F);
             StartCoroutine(JumpCoroutine());
         }
 
@@ -107,6 +111,7 @@ public class PlayerController : MonoBehaviour
         {
             playerAnimator.SetBool("slide", true);
             playerAnimator.Play("Slide");
+            audioSource.PlayOneShot(slide, 0.7F);
             StartCoroutine(SlideCoroutine());
         }
 

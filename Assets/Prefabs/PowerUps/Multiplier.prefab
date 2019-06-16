@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1825697135377326127}
   - component: {fileID: 5362279401106365654}
   - component: {fileID: 3865838484967956266}
+  - component: {fileID: -2356901305555726307}
   m_Layer: 0
   m_Name: Multiplier
   m_TagString: Untagged
@@ -91,3 +92,16 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.418461
   m_Center: {x: 0.10551946, y: 0.05417954, z: -0.64433205}
+--- !u!114 &-2356901305555726307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5933055697410648074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f02b0ade693c3224ba40cc3ac3dba7d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0

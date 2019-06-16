@@ -9,8 +9,6 @@ public class GameController : MonoBehaviour
     public MapGenerator mapGenerator;
     public PlayerController player;
 
-    private bool m_gameOver;
-
     private static GameController m_instance;
 
     private void Awake()
@@ -28,7 +26,6 @@ public class GameController : MonoBehaviour
 
     public void GameOver()
     {
-        m_gameOver = true;
         SceneManager.LoadScene("Menu", LoadSceneMode.Single);
     }
 }

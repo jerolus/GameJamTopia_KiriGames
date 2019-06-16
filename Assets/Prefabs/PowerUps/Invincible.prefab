@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7641216114457809229}
   - component: {fileID: 4122910190858431924}
   - component: {fileID: 3604244561524178221}
+  - component: {fileID: 1657019777608822140}
   m_Layer: 0
   m_Name: Invincible
   m_TagString: Untagged
@@ -92,3 +93,16 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.8400612
   m_Center: {x: -1.6578245, y: -0.000000059604645, z: 0.54903984}
+--- !u!114 &1657019777608822140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2381088043494168936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f02b0ade693c3224ba40cc3ac3dba7d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
