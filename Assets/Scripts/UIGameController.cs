@@ -26,7 +26,7 @@ public class UIGameController : MonoBehaviour
 
     public void UpdatePagesNumber(int pagesNumbersGame)
     {
-        pagesNumber.text = "x" + pagesNumbersGame.ToString();
+        pagesNumber.text = pagesNumbersGame.ToString();
     }
 
     public void PauseGame()

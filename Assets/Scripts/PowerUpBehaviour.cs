@@ -23,48 +23,20 @@ public class PowerUpBehaviour : MonoBehaviour
             {
                 case Type.Multiplier:
                     {
-                        StartCoroutine(MultiplierCoroutine(player));
+                        player.ActivateMultiplier();
                     }
                     break;
                 case Type.Invincible:
                     {
-                        StartCoroutine(InvincibleCoroutine(player));
+                        player.ActivateInvincible();
                     }
                     break;
                 case Type.Magnet:
                     {
-                        StartCoroutine(MagnetCoroutine(player));
+                        player.ActivateMagnet();
                     }
                     break;
             }
         }
-    }
-
-    private IEnumerator MultiplierCoroutine(PlayerController player)
-    {
-        player.powerUpMultiplier = true;
-        yield return new WaitForSeconds(5);
-        player.powerUpMultiplier = false;
-        Destroy(gameObject);
-    }
-
-    private IEnumerator InvincibleCoroutine(PlayerController player)
-    {
-        player.powerUpInvincible = true;
-        player.speed += 10f;
-        yield return new WaitForSeconds(5);
-        player.powerUpInvincible = false;
-        player.speed -= 10f;
-        Destroy(gameObject);
-    }
-    
-    private IEnumerator MagnetCoroutine(PlayerController player)
-    {
-        player.powerUpMagnet = true;
-        player.magnetCollider.SetActive(true);
-        yield return new WaitForSeconds(5);
-        player.powerUpMagnet = false;
-        player.magnetCollider.SetActive(false);
-        Destroy(gameObject);
     }
 }

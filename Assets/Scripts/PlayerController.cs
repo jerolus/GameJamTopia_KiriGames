@@ -28,6 +28,12 @@ public class PlayerController : MonoBehaviour
     private GameController m_controller;
     private bool m_jumping;
     private bool m_sliding;
+    private float m_counterMultiplier;
+    private float m_counterInvincible;
+    private float m_counterMagnet;
+    private float m_timeMultiplier;
+    private float m_timeInvincible;
+    private float m_timeMagnet;
 
     private void Awake()
     {
@@ -45,12 +51,18 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         m_controller = GameController.GetInstance();
+        m_timeInvincible = PlayerPrefs.GetFloat("timeInvincible", 5);
+        m_timeMultiplier = PlayerPrefs.GetFloat("timeMultiplier", 5);
+        m_timeMagnet = PlayerPrefs.GetFloat("timeMagnet", 5);
     }
 
     private void Update()
     {
         CheckMovement();
         CheckInput();
+        CheckMultiplier();
+        CheckInvincible();
+        CheckMagnet();
         ActualizeUIInformation();
     }
 
@@ -144,6 +156,72 @@ public class PlayerController : MonoBehaviour
                     }
                     break;
             }
+        }
+    }
+
+    public void ActivateMultiplier()
+    {
+        m_counterMultiplier = m_timeMultiplier;
+        powerUpMultiplier = true;
+    }
+
+    private void CheckMultiplier()
+    {
+        if (powerUpMultiplier)
+        {   
+            m_counterMultiplier -= Time.deltaTime;
+            if (m_counterMultiplier <= 0)
+            {
+                powerUpMultiplier = false;
+            }
+        }
+    }
+
+    public void ActivateInvincible()
+    {
+        if (!powerUpInvincible)
+        {
+            speed += 10f;
+        }
+            
+        m_counterInvincible = m_timeInvincible;
+        powerUpInvincible = true;
+    }
+
+    private void CheckInvincible()
+    {
+        if (powerUpInvincible)
+        {
+            m_counterInvincible -= Time.deltaTime;
+            if (m_counterInvincible <= 0)
+            {
+                speed -= 10f;
+                powerUpInvincible = false;
+            }
+        }
+    }
+    
+    public void ActivateMagnet()
+    {
+        if (!powerUpMagnet)
+        {
+            magnetCollider.SetActive(true);
+        }
+
+        m_counterMagnet = m_timeMagnet;
+        powerUpMagnet = true;
+    }
+
+    private void CheckMagnet()
+    {
+        if (powerUpMagnet)
+        {
+            m_counterMagnet -= Time.deltaTime;
+                if (m_counterMagnet <= 0)
+                {
+                    magnetCollider.SetActive(false);
+                    powerUpMagnet = false;
+                }
         }
     }
 
