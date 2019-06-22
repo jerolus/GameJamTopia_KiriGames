@@ -1,6 +1,6 @@
 # GameJamTopia_KiriGames
 
-This is a game created for the game jam organized by GameJamTopia
+Game created for the gamejam organized by [GameJamTopia](https://www.gametopia.es/gamejam)
 
 [Itch.io](https://kirigames.itch.io/mars-book)
 
