@@ -2,7 +2,7 @@
 
 This is a game created for the game jam organized by GameJamTopia
 
-[VItch.io](https://kirigames.itch.io/mars-book)
+[Itch.io](https://kirigames.itch.io/mars-book)
 
 ## Contact
 
